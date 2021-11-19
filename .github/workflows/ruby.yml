@@ -35,3 +35,6 @@ jobs:
     - name: Run tests
       working-directory: ./
       run: bundle exec rake
+    - name: Run Behavior Test
+      working-directory: ./
+      run: cucumber
