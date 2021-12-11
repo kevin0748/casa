@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211102005847) do
+ActiveRecord::Schema.define(version: 20211210191009) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "title"
@@ -40,6 +40,30 @@ ActiveRecord::Schema.define(version: 20211102005847) do
     t.string   "director"
   end
 
+  create_table "my_accounts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "research_interest_users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "research_interests", force: :cascade do |t|
+    t.string   "field"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "research_interests_users", id: false, force: :cascade do |t|
+    t.integer "user_id",              null: false
+    t.integer "research_interest_id", null: false
+  end
+
+  add_index "research_interests_users", ["research_interest_id", "user_id"], name: "ru_id"
+  add_index "research_interests_users", ["user_id", "research_interest_id"], name: "ur_id"
+
   create_table "user_events", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
@@ -62,6 +86,7 @@ ActiveRecord::Schema.define(version: 20211102005847) do
     t.integer  "mentee"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organizer"
   end
 
 end
