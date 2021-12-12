@@ -34,7 +34,7 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run unit tests
       working-directory: ./
-      run: rake spec
+      run: bundle exec rake spec
     - name: Run behavior tests
       working-directory: ./
-      run: rake cucumber
+      run: bundle exec rake cucumber
