@@ -32,6 +32,9 @@ jobs:
         working-directory: ./
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Run tests
+    - name: Run unit tests
       working-directory: ./
-      run: bundle exec rake
+      run: rake spec
+    - name: Run behavior tests
+      working-directory: ./
+      run: rake cucumber
